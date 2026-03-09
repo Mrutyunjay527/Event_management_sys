@@ -1,0 +1,29 @@
+﻿@model List<Event>
+
+	<h2>Events</h2>
+
+	<a asp-action="Create">Create New Event</a>
+
+	<table
+		border="1">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Locations</th>
+			<th>Event Date</th>
+			<th>Description</th>
+		</tr>
+	
+	@foreach (var ev in Model)
+	{
+		<tr>
+		    <td>ID</td>
+		    <td>@ev.Name</td>
+		    <td>@ev.Location</td>
+		    <td>@ev.EventDate</td>
+		    <td>@ev.Description</td>
+		</tr>
+		
+	}
+	
+	</table>
