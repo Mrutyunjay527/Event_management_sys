@@ -22,6 +22,11 @@
 		    <td>@ev.Location</td>
 		    <td>@ev.EventDate</td>
 		    <td>@ev.Description</td>
+
+			<td>
+				<a asp-action="Edit" asp-route-id="@ev.ID">Edit</a>
+				<a asp-action="Delete" asp-route-id="@ev.ID">Delete</a>
+				</td>
 		</tr>
 		
 	}
