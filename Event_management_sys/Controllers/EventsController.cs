@@ -20,6 +20,7 @@ namespace Event_management_sys.Controllers
         [HttpPost]
         public IActionResult Create(Event ev)
         {
+            ev.ID = events.Count + 1;
             events.Add(ev);
             return RedirectToAction("Index");
         }

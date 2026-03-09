@@ -11,5 +11,11 @@
         public DateTime EventDate { get; set; }
 
         public string Description { get; set; } = string.Empty;
+
+        public int TotalSeats { get; set; }
+
+        public int AvailableSeats { get; set; }
+
+        public decimal TicketPrice { get; set; }   
     }
 }
