@@ -1,0 +1,18 @@
+﻿@model Event
+
+<h2>Book Event</h2>
+
+<form asp-action="Create">
+
+	<input type="hidden" name="eventId" value="@Model.ID" />
+
+	<p>Event: @Model.Name</p>
+	<p>Available Seats: @Model.AvailableSeats</p>
+
+	<label> Number of Tickets</label>
+	<input type="number" name="tickets" />
+
+	<button type="submit">Book</button>
+</form>
+
+<p>@ViewBag.Message</p>

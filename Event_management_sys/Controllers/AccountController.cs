@@ -1,32 +1,76 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Event_management_sys.Data;
+using Event_management_sys.Models;
+using System.Linq;
 
 namespace Event_management_sys.Controllers
 {
     public class AccountController : Controller
     {
-        //login page
-        public IActionResult Login()
+        private readonly AppDbContext _context;
+
+        public AccountController(AppDbContext context)
         {
-            return View("Login");
+            _context = context;
         }
 
-        //Post login
+        //  LOGIN PAGE
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        //  LOGIN (POST)
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            if (email == "admin@gmail.com" && password == "admin")
+            var user = _context.Users
+                .FirstOrDefault(u => u.Email == email && u.Password == password);
+
+            if (user != null)
             {
-                HttpContext.Session.SetString("Role", "Admin");
-                return RedirectToAction("Index", "Admin");
+                HttpContext.Session.SetString("Role", user.Role);
+                HttpContext.Session.SetString("UserID", user.ID.ToString());
+
+                if (user.Role == "Admin")
+                    return RedirectToAction("Index", "Admin");
+                else
+                    return RedirectToAction("Index", "User");
             }
-            else
-            {
-                HttpContext.Session.SetString("Role", "User");
-                return RedirectToAction("Dashboard", "User");
-            }
+
+            ViewBag.Message = "Invalid login";
+            return View();
         }
-        // logout
+
+        //  REGISTER PAGE
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        //  REGISTER (POST)
+        [HttpPost]
+        public IActionResult Register(User user)
+        {
+            if (_context.Users.Any(u => u.Email == user.Email))
+            {
+                ViewBag.Message = "User already exists. Please login.";
+                return View("Login");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+
+                return RedirectToAction("Login");
+            }
+
+            return View(user);
+        }
+
+        //  LOGOUT
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();

@@ -1,0 +1,20 @@
+﻿@model List<Event_management_sys.Models.Booking>
+
+<h2>My Bookings</h2>
+
+<table border="1">
+    <tr>
+        <th>Event ID</th>
+        <th>Tickets</th>
+        <th>Booking Date</th>
+    </tr>
+
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td>@b.EventID</td>
+            <td>@b.Tickets</td>
+            <td>@b.BookingDate</td>
+        </tr>
+    }
+</table>

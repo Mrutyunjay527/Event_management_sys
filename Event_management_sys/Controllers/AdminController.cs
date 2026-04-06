@@ -1,14 +1,20 @@
 ﻿using Event_management_sys.Models;
+using Event_management_sys.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
-using Microsoft.AspNetCore.Identity;
-
 
 namespace Event_management_sys.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly AppDbContext _context;
+
+        public AdminController(AppDbContext context)
+        {
+            _context = context;
+        }
+
         // 🔹 INDEX
         public IActionResult Index()
         {
@@ -16,17 +22,18 @@ namespace Event_management_sys.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            return View(DataStore.Events);
+
+            return View(_context.Events.ToList());
         }
 
         // 🔹 CREATE (GET)
         public IActionResult Create()
         {
-
             if (HttpContext.Session.GetString("Role") != "Admin")
             {
                 return RedirectToAction("Login", "Account");
             }
+
             return View();
         }
 
@@ -34,23 +41,18 @@ namespace Event_management_sys.Controllers
         [HttpPost]
         public IActionResult Create(Event ev)
         {
-            var roll = HttpContext.Session.GetString("Role");
+            var role = HttpContext.Session.GetString("Role");
 
-            if (roll == null || roll != "Admin")
-
+            if (role == null || role != "Admin")
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Auto ID
-            ev.ID = DataStore.Events.Count > 0
-                ? DataStore.Events.Max(e => e.ID) + 1
-                : 1;
-
-            // Set Available Seats
+            // Auto Available Seats
             ev.AvailableSeats = ev.TotalSeats;
 
-            DataStore.Events.Add(ev);
+            _context.Events.Add(ev);
+            _context.SaveChanges(); 
 
             return RedirectToAction("Index");
         }
@@ -58,15 +60,14 @@ namespace Event_management_sys.Controllers
         // 🔹 EDIT (GET)
         public IActionResult Edit(int id)
         {
-            var roll = HttpContext.Session.GetString("Role");
+            var role = HttpContext.Session.GetString("Role");
 
-            if (roll == null || roll != "Admin")
-
+            if (role == null || role != "Admin")
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var ev = DataStore.Events.FirstOrDefault(e => e.ID == id);
+            var ev = _context.Events.FirstOrDefault(e => e.ID == id);
 
             if (ev == null)
             {
@@ -80,15 +81,14 @@ namespace Event_management_sys.Controllers
         [HttpPost]
         public IActionResult Edit(Event ev)
         {
-            var roll = HttpContext.Session.GetString("Role");
+            var role = HttpContext.Session.GetString("Role");
 
-            if (roll == null || roll != "Admin")
-
+            if (role == null || role != "Admin")
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var existing = DataStore.Events.FirstOrDefault(e => e.ID == ev.ID);
+            var existing = _context.Events.FirstOrDefault(e => e.ID == ev.ID);
 
             if (existing != null)
             {
@@ -98,6 +98,8 @@ namespace Event_management_sys.Controllers
                 existing.Description = ev.Description;
                 existing.TotalSeats = ev.TotalSeats;
                 existing.TicketPrice = ev.TicketPrice;
+
+                _context.SaveChanges(); 
             }
 
             return RedirectToAction("Index");
@@ -106,19 +108,19 @@ namespace Event_management_sys.Controllers
         // 🔹 DELETE
         public IActionResult Delete(int id)
         {
-            var roll = HttpContext.Session.GetString("Role");
+            var role = HttpContext.Session.GetString("Role");
 
-            if (roll == null || roll != "Admin")
-
+            if (role == null || role != "Admin")
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            var ev = DataStore.Events.FirstOrDefault(e => e.ID == id);
+            var ev = _context.Events.FirstOrDefault(e => e.ID == id);
 
             if (ev != null)
             {
-                DataStore.Events.Remove(ev);
+                _context.Events.Remove(ev);
+                _context.SaveChanges();
             }
 
             return RedirectToAction("Index");
@@ -127,16 +129,14 @@ namespace Event_management_sys.Controllers
         // 🔹 DETAILS
         public IActionResult Details(int id)
         {
+            var role = HttpContext.Session.GetString("Role");
 
-            var roll = HttpContext.Session.GetString("Role");
-            
-                if (roll ==  null || roll != "Admin")
-            
-                 {
-                    return RedirectToAction("Login", "Account");
-                 }
+            if (role == null || role != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
-            var ev = DataStore.Events.FirstOrDefault(e => e.ID == id);
+            var ev = _context.Events.FirstOrDefault(e => e.ID == id);
 
             if (ev == null)
             {
@@ -145,7 +145,5 @@ namespace Event_management_sys.Controllers
 
             return View(ev);
         }
-
-       
     }
 }

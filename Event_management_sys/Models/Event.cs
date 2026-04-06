@@ -1,4 +1,6 @@
-﻿namespace Event_management_sys.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Event_management_sys.Models
 {
     public class Event
     {
@@ -16,6 +18,7 @@
 
         public int AvailableSeats { get; set; }
 
+        [Column(TypeName = "decimal(18,2)")]
         public decimal TicketPrice { get; set; }   
     }
 }

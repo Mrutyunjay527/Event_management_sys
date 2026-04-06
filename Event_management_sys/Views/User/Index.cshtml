@@ -1,0 +1,30 @@
+﻿@model List<Event>
+
+	<h2>Available</h2>
+
+	<table border="1">
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Date</th>
+			<th>Seats</th>
+			<th>Actions</th>
+		</tr>
+
+	@foreach (var ev in Model)
+	{
+		<tr>
+		    <td>@ev.Name</td>
+		    <td>@ev.Location</td>
+		    <td>@ev.EventDate</td>
+		    <td>@ev.AvailableSeats</td>
+
+		    <td>
+			   <a asp-controller="Booking"
+			      asp-action="Create"
+				  asp-route-id="@ev.ID">Book</a>
+		    </td>
+		</tr>
+	}
+
+	</table>

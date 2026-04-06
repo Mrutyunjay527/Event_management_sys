@@ -6,7 +6,9 @@
 
         public int EventID { get; set; }
 
-        public int NumberOfTickets { get; set; }
+        public int UserID { get; set; }
+
+        public int Tickets { get; set; }
 
         public double TotalAmount {  get; set; }
 

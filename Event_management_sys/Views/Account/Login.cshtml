@@ -1,11 +1,41 @@
-﻿<h2>Login</h2>
+﻿@model Event_management_sys.Models.User
 
-<form asp-action="Login" method="post">
-	<label>Email</label>
-	<input type="text" name="email" />
+<h2>Account</h2>
 
-	<label>Password</label>
-	<input type="password" name="password" />
+<div style="display:flex; gap:50px;">
 
-	<button type="submit">Login</button>
-</form>
+    <!-- 🔹 LOGIN -->
+    <div>
+        <h3>Login</h3>
+        <form asp-action="Login" method="post">
+            <label>Email</label><br />
+            <input type="text" name="email" /><br /><br />
+
+            <label>Password</label><br />
+            <input type="password" name="password" /><br /><br />
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- 🔹 REGISTER -->
+    <div>
+        <h3>Register</h3>
+        <form asp-action="Register" method="post">
+
+            <label>Name</label><br />
+            <input asp-for="Name" /><br /><br />
+
+            <label>Email</label><br />
+            <input asp-for="Email" /><br /><br />
+
+            <label>Password</label><br />
+            <input asp-for="Password" type="password" /><br /><br />
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+</div>
+
+<p style="color:red">@ViewBag.Message</p>
