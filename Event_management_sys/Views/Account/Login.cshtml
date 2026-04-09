@@ -1,25 +1,11 @@
 ﻿@model Event_management_sys.Models.User
 
-<h2>Account</h2>
+<link rel="stylesheet" href="~/css/account.css" />
 
-<div style="display:flex; gap:50px;">
+<div class="container">
 
-    <!-- 🔹 LOGIN -->
-    <div>
-        <h3>Login</h3>
-        <form asp-action="Login" method="post">
-            <label>Email</label><br />
-            <input type="text" name="email" /><br /><br />
-
-            <label>Password</label><br />
-            <input type="password" name="password" /><br /><br />
-
-            <button type="submit">Login</button>
-        </form>
-    </div>
-
-    <!-- 🔹 REGISTER -->
-    <div>
+    <!-- 🔹 REGISTER (FIRST) -->
+    <div class="card register-card">
         <h3>Register</h3>
         <form asp-action="Register" method="post">
 
@@ -36,6 +22,20 @@
         </form>
     </div>
 
+    <!-- 🔹 LOGIN -->
+    <div class="card login-card">
+        <h3>Login</h3>
+        <form asp-action="Login" method="post">
+            <label>Email</label><br />
+            <input type="text" name="email" /><br /><br />
+
+            <label>Password</label><br />
+            <input type="password" name="password" /><br /><br />
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
 </div>
 
-<p style="color:red">@ViewBag.Message</p>
+<p class="message">@ViewBag.Message</p>

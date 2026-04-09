@@ -1,0 +1,77 @@
+﻿
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+/* Card style */
+.card {
+    background: white;
+    padding: 25px;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Register highlighted */
+.register-card {
+    border-top: 5px solid #007bff;
+}
+
+/* Login normal */
+.login-card {
+    border-top: 5px solid #6c757d;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+    button:hover {
+        background: #0056b3;
+    }
+
+/* Message */
+.message {
+    text-align: center;
+    color: red;
+    margin-top: 20px;
+}
