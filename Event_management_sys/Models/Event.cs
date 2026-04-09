@@ -12,7 +12,7 @@ namespace Event_management_sys.Models
 
         public DateTime EventDate { get; set; }
 
-        public string Description { get; set; } = string.Empty;
+        //public string Description { get; set; } = string.Empty;
 
         public int TotalSeats { get; set; }
 

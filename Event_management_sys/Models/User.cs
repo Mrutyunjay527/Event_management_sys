@@ -15,6 +15,6 @@ namespace Event_management_sys.Models
         [Required]
         public string Password { get; set; } = "";
 
-        public string Role { get; set; } = "User"; // default
+        public string Role { get; set; } = "User"; 
     }
 }

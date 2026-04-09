@@ -12,6 +12,6 @@ namespace Event_management_sys.Data
 
         public DbSet<Event> Events { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<User> Users { get; set; } // for login
+        public DbSet<User> Users { get; set; } 
     }
 }

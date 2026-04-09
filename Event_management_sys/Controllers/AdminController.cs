@@ -15,7 +15,7 @@ namespace Event_management_sys.Controllers
             _context = context;
         }
 
-        // 🔹 INDEX
+        // INDEX
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString("Role") != "Admin")
@@ -26,7 +26,7 @@ namespace Event_management_sys.Controllers
             return View(_context.Events.ToList());
         }
 
-        // 🔹 CREATE (GET)
+        // CREATE (GET)
         public IActionResult Create()
         {
             if (HttpContext.Session.GetString("Role") != "Admin")
@@ -37,7 +37,7 @@ namespace Event_management_sys.Controllers
             return View();
         }
 
-        // 🔹 CREATE (POST)
+        // CREATE (POST)
         [HttpPost]
         public IActionResult Create(Event ev)
         {
@@ -48,7 +48,7 @@ namespace Event_management_sys.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            // Auto Available Seats
+            
             ev.AvailableSeats = ev.TotalSeats;
 
             _context.Events.Add(ev);
@@ -57,7 +57,7 @@ namespace Event_management_sys.Controllers
             return RedirectToAction("Index");
         }
 
-        // 🔹 EDIT (GET)
+        // EDIT (GET)
         public IActionResult Edit(int id)
         {
             var role = HttpContext.Session.GetString("Role");
@@ -77,7 +77,7 @@ namespace Event_management_sys.Controllers
             return View(ev);
         }
 
-        // 🔹 EDIT (POST)
+        // EDIT (POST)
         [HttpPost]
         public IActionResult Edit(Event ev)
         {
@@ -95,7 +95,7 @@ namespace Event_management_sys.Controllers
                 existing.Name = ev.Name;
                 existing.Location = ev.Location;
                 existing.EventDate = ev.EventDate;
-                existing.Description = ev.Description;
+                //existing.Description = ev.Description;
                 existing.TotalSeats = ev.TotalSeats;
                 existing.TicketPrice = ev.TicketPrice;
 
@@ -105,7 +105,7 @@ namespace Event_management_sys.Controllers
             return RedirectToAction("Index");
         }
 
-        // 🔹 DELETE
+        // DELETE
         public IActionResult Delete(int id)
         {
             var role = HttpContext.Session.GetString("Role");
@@ -126,7 +126,7 @@ namespace Event_management_sys.Controllers
             return RedirectToAction("Index");
         }
 
-        // 🔹 DETAILS
+        // DETAILS
         public IActionResult Details(int id)
         {
             var role = HttpContext.Session.GetString("Role");

@@ -1,0 +1,90 @@
+﻿/* Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 20px;
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Create Button */
+a[asp-action="Create"] {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+    a[asp-action="Create"]:hover {
+        background-color: #218838;
+    }
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Table Header */
+th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Table Data */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Row Hover Effect */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Action Links */
+td a {
+    margin-right: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Edit */
+a[asp-action="Edit"] {
+    color: #ffc107;
+}
+
+/* Delete */
+a[asp-action="Delete"] {
+    color: #dc3545;
+}
+
+/* Details */
+a[asp-action="Details"] {
+    color: #17a2b8;
+}
+
+/* Hover Effects */
+a[asp-action="Edit"]:hover {
+    text-decoration: underline;
+}
+
+a[asp-action="Delete"]:hover {
+    text-decoration: underline;
+}
+
+a[asp-action="Details"]:hover {
+    text-decoration: underline;
+}

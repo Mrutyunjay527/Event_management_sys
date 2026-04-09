@@ -1,0 +1,99 @@
+﻿/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 20px;
+}
+
+/* Heading */
+h2 {
+    color: #444;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table header */
+th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+    padding: 12px;
+    font-size: 16px;
+}
+
+/* Table rows */
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Zebra stripe for rows */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect */
+tr:hover {
+    background-color: #e0f7fa;
+}
+
+/* Actions link styling */
+td a {
+    display: inline-block;
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #2196F3;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+    td a:hover {
+        background-color: #0b7dda;
+    }
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    table, tr, th, td {
+        display: block;
+    }
+
+    tr {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        display: block;
+        text-align: right;
+    }
+
+    td {
+        text-align: right;
+        padding: 10px;
+        position: relative;
+    }
+
+        td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 10px;
+            width: 50%;
+            font-weight: bold;
+            text-align: left;
+        }
+}

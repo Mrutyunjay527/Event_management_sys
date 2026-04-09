@@ -1,4 +1,5 @@
 ﻿@model List<Event>
+<link rel="stylesheet" href="~/css/IndexEvent.css" />
 
 	<h2>Events</h2>
 
@@ -11,7 +12,7 @@
 			<th>Name</th>
 			<th>Locations</th>
 			<th>Event Date</th>
-			<th>Description</th>
+			@* <th>Description</th> *@
 		</tr>
 	
 	@foreach (var ev in Model)
@@ -21,7 +22,7 @@
 		    <td>@ev.Name</td>
 		    <td>@ev.Location</td>
 		    <td>@ev.EventDate</td>
-		    <td>@ev.Description</td>
+		    @* <td>@ev.Description</td> *@
 
 			<td>
 				<a asp-action="Edit" asp-route-id="@ev.ID">Edit</a>
