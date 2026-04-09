@@ -1,0 +1,31 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    color: #333;
+}
+
+.event-container {
+    width: 400px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+    .event-container p {
+        font-size: 16px;
+        margin: 12px 0;
+        color: #555;
+    }
+
+    .event-container strong {
+        color: #222;
+    }
